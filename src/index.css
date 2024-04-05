@@ -1,0 +1,133 @@
+html, body {
+  margin: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.container{
+  display: flex;
+}
+
+.container-left{
+  flex: 0 0 20%;
+  border-right: 1px solid black;
+}
+
+.container-right {
+  flex: 0 0 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  background-color: #ffffff;
+  font-family: Helvetica,sans-serif;
+  padding-top: 20px ;
+  overflow-y: auto;
+}
+
+.note{
+  width: 42%;
+  background-color: grey;
+  padding: 20px 15px;
+  border-radius: 5px;
+}
+
+.button{
+  margin: 5px;
+  background-color: grey;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+.searchBar{
+  flex: 0 0 70%;
+  border: none;
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color: grey;
+  padding: 8px;
+}
+
+.top-div{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  height: 10vh;
+}
+
+.top-div-right{
+  display: flex;
+  flex: 0 0 80%;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.logo-text{
+  color: black;
+  margin-left: 10px;
+}
+
+.folder{
+  background-color: grey;
+  margin: 10px;
+}
+
+.menu-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.menu {
+  display: none;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-top: none;
+  width: 100%;
+}
+.menu-item {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+
+.adding-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black overlay */
+  z-index: 999; /* Ensure the overlay is above other content */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.adding-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Drop shadow effect */
+}
+
+.buttons-adding-form {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.adding-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
