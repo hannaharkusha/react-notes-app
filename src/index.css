@@ -1,7 +1,14 @@
+
+
 html, body {
   margin: 0;
   width: 100%;
   overflow-x: hidden;
+  box-sizing: border-box;
+  background-color: #303030;
+  color: white;
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
 }
 
 .container{
@@ -9,44 +16,60 @@ html, body {
 }
 
 .container-left{
-  flex: 0 0 20%;
+  flex: 0 0 25%;
   border-right: 1px solid black;
 }
 
 .container-right {
-  flex: 0 0 80%;
+  flex: 0 0 75%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: flex-start;
-  background-color: #ffffff;
-  font-family: Helvetica,sans-serif;
   padding-top: 20px ;
   overflow-y: auto;
 }
 
 .note{
-  width: 42%;
-  background-color: grey;
+  width: 40%;
+  background-color: cadetblue;
   padding: 20px 15px;
   border-radius: 5px;
+  font-weight: 300;
 }
 
 .button{
   margin: 5px;
-  min-width: 80px;
-  background-color: grey;
+  min-width: 120px;
   border: none;
   border-radius: 5px;
-  padding: 8px;
+  height: 35px;
+  background-color: #4D61C1;
+  color: white;
+  font-size: 16px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
 }
 
 .searchBar{
-  flex: 0 0 70%;
+  width: 60%;
   border: none;
   margin-right: 10px;
-  border-radius: 5px;
-  background-color: grey;
-  padding: 8px;
+  border-radius: 30px;
+  background-color: lightgray;
+  cursor: text;
+  height: 35px;
+}
+
+.searchBar-input{
+  width: 100%;
+  background: none;
+  border: none;
+  line-height: 35px;
+  margin-left: 20px;
+}
+
+input:focus {
+  outline: none;
 }
 
 .top-div{
@@ -56,65 +79,59 @@ html, body {
   justify-content: space-between;
   border-bottom: 1px solid black;
   height: 10vh;
+  position: sticky;
 }
 
 .top-div-right{
   display: flex;
-  flex: 0 0 80%;
+  width: 80%;
   justify-content: flex-end;
   align-items: center;
   margin-right: 10px;
 }
 
 .logo-text{
-  color: black;
-  margin-left: 10px;
+  font-family: "Reddit Mono", monospace;
+  font-size: 24px;
+  margin-left: 40px;
 }
 
 .folder{
-  background-color: grey;
   margin: 10px;
+  padding: 15px 10px;
 }
-
 .dropdown-menu {
-  width: 367px;
-  padding: 0;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  width: 320px;
+  border: 1px solid #595858;
+  border-top: none;
   display: block; /* Ensure items are displayed as block elements */
   position: absolute; /* Position the dropdown absolutely */
-  top: calc(100% + 4px); /* Position the dropdown below the toggle button */
+  top: calc(100%); /* Position the dropdown below the toggle button */
   left: 0; /* Align the dropdown with the left edge of the toggle button */
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #504f4f;
 }
 
 .dropdown-item {
-  width: 367px;
-  padding: 8px 8px;
+  width: 320px;
+  padding: 8px;
   font-size: 14px;
-  color: #333;
+  color: white;
   cursor: pointer;
   display: block;
 }
 
-.dropdown-item:hover {
-  background-color: #f8f9fa;
-  color: #333;
-}
-
 .dropdown-toggle {
-  width: 367px;
-  padding: 8px 12px;
+  width: 320px;
+  padding: 10px;
   font-size: 14px;
-  background-color: #fff;
-  color: #333;
+  background: none;
+  color: white;
   cursor: pointer;
-}
-
-.dropdown-toggle:hover {
-  background-color: #f8f9fa;
-  color: #333;
+  display: flex;
+  justify-content: space-between;
+  border: none;
 }
 
 .adding-form-overlay {
@@ -123,7 +140,6 @@ html, body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black overlay */
   z-index: 999; /* Ensure the overlay is above other content */
   display: flex;
   justify-content: center;
@@ -131,9 +147,13 @@ html, body {
 }
 
 .adding-form {
-  width: 25%;
-  background-color: white;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 312px;
+  background-color: #504f4f;
+  padding: 30px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Drop shadow effect */
 }
@@ -144,11 +164,19 @@ html, body {
   margin-top: 10px;
 }
 
-.adding-form input {
-  width: 90%;
-  min-height: 90px;
-  padding: 10px;
+.adding-form textarea {
+  width: 312px;
+  height: 90px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  resize: vertical; /* Allow vertical resizing */
+  outline: none; /* Remove default outline */
+  background: none;
+  color: white;
+  padding: 10px;
 }
+
+
+
+

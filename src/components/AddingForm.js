@@ -35,7 +35,7 @@ function AddingForm({ onClose }) {
     return (
         <div className='adding-form-overlay'>
             <div className='adding-form'>
-                <input value={inputValue} onChange={handleInputChange} />
+                <textarea value={inputValue} onChange={handleInputChange} placeholder='Type here..'></textarea>
                 <DropdownMenu options={["Option 1", "Option 2", "Option 3"]} onSelect={handleSelect} />
                 <div className='buttons-adding-form'>
                     <Button buttonText='Cancel' onClick={handleCancelClick} />

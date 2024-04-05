@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 function DropdownMenu({ options, onSelect }) {
     const [dropdownOpen, setDropdownOpen] = useState(false); // State to manage dropdown visibility
     const [selectedOption, setSelectedOption] = useState(null); // State to store the selected option
 
     const handleToggleClick = () => {
-        setDropdownOpen(prevState => !prevState); // Toggle the dropdownOpen state
+        setDropdownOpen(!dropdownOpen); // Toggle the dropdownOpen state
     };
 
     const handleOptionSelect = (option) => {
@@ -15,21 +17,34 @@ function DropdownMenu({ options, onSelect }) {
         setDropdownOpen(false); // Close the dropdown after selecting an option
     };
 
-    return (
-        <Dropdown className='dropdown' show={dropdownOpen} onToggle={handleToggleClick}>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
-                {selectedOption || "Choose Folder"}
-            </Dropdown.Toggle>
+    if(dropdownOpen){
+        return (
+            <Dropdown className='dropdown' show={dropdownOpen} onToggle={handleToggleClick}>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                    <span>{selectedOption || "Choose Folder"}</span>
+                    <span><FontAwesomeIcon icon={faAngleDown} /></span>
+                </Dropdown.Toggle>
 
-            <Dropdown.Menu>
-                {options.map((option, index) => (
-                    <Dropdown.Item key={index} onClick={() => handleOptionSelect(option)}>
-                        {option}
-                    </Dropdown.Item>
-                ))}
-            </Dropdown.Menu>
-        </Dropdown>
-    );
+                <Dropdown.Menu>
+                    {options.map((option, index) => (
+                        <Dropdown.Item key={index} onClick={() => handleOptionSelect(option)}>
+                            {option}
+                        </Dropdown.Item>
+                    ))}
+                </Dropdown.Menu>
+            </Dropdown>
+        );
+    }
+    else {
+        return (
+            <Dropdown className='dropdown' show={dropdownOpen} onToggle={handleToggleClick}>
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                    <span>{selectedOption || "Choose Folder"}</span>
+                    <span><FontAwesomeIcon icon={faAngleDown}/></span>
+                </Dropdown.Toggle>
+            </Dropdown>
+        );
+    }
 }
 
 export default DropdownMenu;
