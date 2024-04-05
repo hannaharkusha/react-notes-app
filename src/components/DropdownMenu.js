@@ -1,26 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react';
+import Dropdown from 'react-bootstrap/Dropdown';
 
-function DropdownMenu(){
-    function toggleMenu(){
-        let menu = document.getElementById("menu");
-        if (menu.style.display === "none" || menu.style.display === "") {
-            menu.style.display = "flex";
-        } else {
-            menu.style.display = "none";
-        }
-    }
+function DropdownMenu({ options, onSelect }) {
+    const [dropdownOpen, setDropdownOpen] = useState(false); // State to manage dropdown visibility
+    const [selectedOption, setSelectedOption] = useState(null); // State to store the selected option
+
+    const handleToggleClick = () => {
+        setDropdownOpen(prevState => !prevState); // Toggle the dropdownOpen state
+    };
+
+    const handleOptionSelect = (option) => {
+        onSelect(option);
+        setSelectedOption(option); // Update the selected option
+        setDropdownOpen(false); // Close the dropdown after selecting an option
+    };
+
     return (
-        <div>
-            <div className="menu-container" onClick={toggleMenu}>
-                <span>Choose Folder</span>
-                <span>&#9660;</span>
-            </div>
-            <div className="menu" id="menu">
-                <div className="menu-item">Option 1</div>
-                <div className="menu-item">Option 2</div>
-                <div className="menu-item">Add new folder..</div>
-            </div>
-        </div>
+        <Dropdown className='dropdown' show={dropdownOpen} onToggle={handleToggleClick}>
+            <Dropdown.Toggle variant="success" id="dropdown-basic">
+                {selectedOption || "Choose Folder"}
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+                {options.map((option, index) => (
+                    <Dropdown.Item key={index} onClick={() => handleOptionSelect(option)}>
+                        {option}
+                    </Dropdown.Item>
+                ))}
+            </Dropdown.Menu>
+        </Dropdown>
     );
 }
 
