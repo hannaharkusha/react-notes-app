@@ -11,11 +11,16 @@ html, body {
 
 .container{
   display: flex;
+  height: 90vh;
 }
 
 .container-left{
   flex: 0 0 25%;
   border-right: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
 }
 
 .container-right {
@@ -66,13 +71,15 @@ html, body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   border-top: solid 1px lightgray;
   padding-top: 3px;
 }
 
 .note-content{
   padding: 15px 0;
+  max-height: 100px;
+  overflow-y: hidden;
 }
 
 .button {
@@ -230,6 +237,28 @@ input:focus {
   background: none;
   color: white;
   padding: 5px;
+}
+
+.delete-icon{
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.delete-icon:hover{
+  color: red;
+ }
+
+.add-folder{
+  cursor: pointer;
+  align-self: flex-end;
+  margin-right: 15px;
+  font-size: 25px;
+  position: fixed; /*naprawic kiedy bedzie duzo folderow*/
+  bottom: 25px;
+}
+
+.add-folder:hover{
+  color: lightgray;
 }
 
 

@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import Button from './Button';
 import DropdownMenu from './DropdownMenu';
-import Note from './Note';
 
 function AddingForm({ onClose, onAddNote }) {
     const [inputValue, setInputValue] = useState('');
@@ -36,7 +35,7 @@ function AddingForm({ onClose, onAddNote }) {
         <div className='adding-form-overlay'>
             <div className='adding-form'>
                 <textarea value={inputValue} onChange={handleInputChange} placeholder='Type here..'></textarea>
-                <DropdownMenu options={["Option 1", "Option 2", "Option 3"]} onSelect={handleSelect} />
+                <DropdownMenu options={(JSON.parse(localStorage.getItem('folders')) || []).map(folder => folder.name)} onSelect={handleSelect} />
                 <div className='buttons-adding-form'>
                     <Button buttonText='Cancel' onClick={handleCancelClick} />
                     <Button buttonText='Add' onClick={handleAddClick} />
