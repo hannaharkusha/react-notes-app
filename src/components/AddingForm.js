@@ -4,8 +4,7 @@ import Button from './Button';
 import DropdownMenu from './DropdownMenu';
 import Note from './Note';
 
-function AddingForm({ onClose }) {
-
+function AddingForm({ onClose, onAddNote }) {
     const [inputValue, setInputValue] = useState('');
     const [selectedFolder, setSelectedFolder] = useState(null);
 
@@ -25,7 +24,8 @@ function AddingForm({ onClose }) {
             time: new Date().toLocaleTimeString(),
             date: new Date().toLocaleDateString()
         };
-        alert(JSON.stringify(newNote)); // Display the new note details
+        onAddNote(newNote); // Pass the new note to the parent component
+        onClose();
     };
 
     const handleCancelClick = () => {

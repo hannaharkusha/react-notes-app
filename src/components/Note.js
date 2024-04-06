@@ -3,9 +3,15 @@ import React from 'react'
 function Note(props){
     return (
         <div className='note'>
-            <div>{props.header}{props.fold}</div>
-            <div onClick={props.onClick}>{props.content}</div>
-            <div>{props.time}{props.date}</div>
+            <div className='note-top'>
+                <div className='note-header'>{props.header}</div>
+                <div className='note-folder'>{props.fold}</div>
+            </div>
+            <div className='note-content' onClick={props.onClick}>{props.content}</div>
+            <div className='note-bottom'>
+                <div>{props.time}</div>
+                <div>{props.date}</div>
+            </div>
         </div>
     );
 }

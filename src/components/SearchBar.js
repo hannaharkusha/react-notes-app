@@ -3,7 +3,7 @@ import React from 'react'
 function SearchBar(props){
     return (
         <div className='searchBar'>
-            <input className='searchBar-input'/>
+            <input className='searchBar-input' placeholder='Search through your notes'/>
             <div onClick={props.onClick}></div>
         </div>
     );

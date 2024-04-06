@@ -1,3 +1,4 @@
+// App.js
 import React from 'react';
 import Note from './components/Note';
 import Button from './components/Button';
@@ -9,7 +10,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showAddingForm: false
+      showAddingForm: false,
+      notes: [] // Array to store notes
     };
   }
 
@@ -19,6 +21,13 @@ class App extends React.Component {
 
   handleCloseAddingForm = () => {
     this.setState({ showAddingForm: false });
+  }
+
+  // Function to add a new note
+  handleAddNote = (newNote) => {
+    this.setState(prevState => ({
+      notes: [...prevState.notes, newNote]
+    }));
   }
 
   render() {
@@ -37,11 +46,12 @@ class App extends React.Component {
               <Folder name='Folder 2'/>
             </div>
             <div className='container-right'>
-              <Note content="My first note" />
-              <Note content="My second note" />
+              {this.state.notes.map((note, index) => (
+                  <Note key={index} fold={note.folder} content={note.content} date={note.date} time={note.time} header="Note" />
+              ))}
             </div>
           </div>
-          {this.state.showAddingForm && <AddingForm onClose={this.handleCloseAddingForm} />}
+          {this.state.showAddingForm && <AddingForm onClose={this.handleCloseAddingForm} onAddNote={this.handleAddNote} />}
         </div>
     );
   }

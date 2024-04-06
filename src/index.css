@@ -1,5 +1,3 @@
-
-
 html, body {
   margin: 0;
   width: 100%;
@@ -31,29 +29,70 @@ html, body {
 
 .note{
   width: 40%;
-  background-color: cadetblue;
+  background-color: #4f9fa2;
   padding: 20px 15px;
-  border-radius: 5px;
+  border-radius: 10px;
   font-weight: 300;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-.button{
+.note-top {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note-header{
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.note-folder{
+  width: fit-content;
+  background-color: #e1d8d1;
+  color: #4f9fa2;
+  font-weight: 1000;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.note-bottom{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-top: solid 1px lightgray;
+  padding-top: 3px;
+}
+
+.note-content{
+  padding: 15px 0;
+}
+
+.button {
   margin: 5px;
   min-width: 120px;
   border: none;
   border-radius: 5px;
   height: 35px;
-  background-color: #4D61C1;
+  background-color: #465bc0;
   color: white;
   font-size: 16px;
   font-family: "Nunito", sans-serif;
-  font-weight: 400;
+  font-weight: 500;
+  box-shadow: #465bc0;
 }
 
 .searchBar{
   width: 60%;
   border: none;
-  margin-right: 10px;
+  margin-right: 15px;
   border-radius: 30px;
   background-color: lightgray;
   cursor: text;
@@ -66,6 +105,7 @@ html, body {
   border: none;
   line-height: 35px;
   margin-left: 20px;
+  font-family: "Nunito", sans-serif;
 }
 
 input:focus {
@@ -80,6 +120,7 @@ input:focus {
   border-bottom: 1px solid black;
   height: 10vh;
   position: sticky;
+  padding-right: 15px;
 }
 
 .top-div-right{
@@ -100,8 +141,12 @@ input:focus {
   margin: 10px;
   padding: 15px 10px;
 }
+.dropdown{
+  width: 87%;
+}
+
 .dropdown-menu {
-  width: 320px;
+  width: 20%;
   border: 1px solid #595858;
   border-top: none;
   display: block; /* Ensure items are displayed as block elements */
@@ -114,17 +159,19 @@ input:focus {
 }
 
 .dropdown-item {
-  width: 320px;
-  padding: 8px;
+  padding: 5px;
   font-size: 14px;
   color: white;
   cursor: pointer;
   display: block;
+  width: 20%;
+
 }
 
 .dropdown-toggle {
-  width: 320px;
-  padding: 10px;
+  margin-top: 25px;
+  width: 100%;
+  padding: 5px 0;
   font-size: 14px;
   background: none;
   color: white;
@@ -147,34 +194,42 @@ input:focus {
 }
 
 .adding-form {
+  width: 23%;
+  min-width: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  width: 312px;
+  padding: 15px 0;
   background-color: #504f4f;
-  padding: 30px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Drop shadow effect */
 }
 
 .buttons-adding-form {
+  width: 90%;
   display: flex;
-  justify-content: space-evenly;
-  margin-top: 10px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.buttons-adding-form :first-child{
+  background-color: #e1d8d1 ;
+  color: #303030;
 }
 
 .adding-form textarea {
-  width: 312px;
-  height: 90px;
-  margin-bottom: 10px;
+  width: 87%;
+  justify-self: flex-start;
+  height: 130px;
+  margin-top: 15px;
   border: 1px solid #ccc;
   border-radius: 3px;
   resize: vertical; /* Allow vertical resizing */
   outline: none; /* Remove default outline */
   background: none;
   color: white;
-  padding: 10px;
+  padding: 5px;
 }
 
 
