@@ -20,6 +20,16 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+    // Load notes and folders from localStorage when the component mounts
+    const savedNotes = JSON.parse(localStorage.getItem('notes')) || [];
+    const savedFolders = JSON.parse(localStorage.getItem('folders')) || [];
+    this.setState({
+      notes: savedNotes,
+      folders: savedFolders
+    });
+  }
+
   handleAddNoteClick = () => {
     this.setState({ showAddingForm: true });
   }
@@ -78,7 +88,7 @@ class App extends React.Component {
             <div className='container-left'>
               <div>
                 {this.state.folders.map((folder, index) => (
-                    <Folder key={index} name={folder.name}/>
+                    <Folder key={index} name={folder.name} color={folder.color}/>
                 ))}
               </div>
               <div className='add-folder' onClick={this.handleAddFolderClick}><FontAwesomeIcon icon={faFolderPlus}/>
@@ -86,7 +96,7 @@ class App extends React.Component {
             </div>
             <div className='container-right'>
               {this.state.notes.map((note, index) => (
-                  <Note key={index} fold={note.folder} content={note.content} date={note.date} time={note.time} header="Note" onDelete={() => this.handleDeleteNote(index)} />
+                  <Note key={index} fold={note.folder} content={note.content} date={note.date} time={note.time} color={note.color} header="Note" onDelete={() => this.handleDeleteNote(index)} />
               ))}
             </div>
           </div>

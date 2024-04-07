@@ -1,11 +1,17 @@
-// AddingForm.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from './Button';
 import DropdownMenu from './DropdownMenu';
 
 function AddingForm({ onClose, onAddNote }) {
     const [inputValue, setInputValue] = useState('');
     const [selectedFolder, setSelectedFolder] = useState(null);
+    const [folders, setFolders] = useState([]);
+
+    // Fetch folders from localStorage on component mount
+    useEffect(() => {
+        const storedFolders = JSON.parse(localStorage.getItem('folders')) || [];
+        setFolders(storedFolders);
+    }, []);
 
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
@@ -17,13 +23,20 @@ function AddingForm({ onClose, onAddNote }) {
 
     const handleAddClick = () => {
         if (!inputValue || !selectedFolder) return;
+
+        const selectedFolderObject = folders.find(folder => folder.name === selectedFolder);
+
+        if (!selectedFolderObject) return;
+
         const newNote = {
             content: inputValue,
             folder: selectedFolder,
             time: new Date().toLocaleTimeString(),
-            date: new Date().toLocaleDateString()
+            date: new Date().toLocaleDateString(),
+            color: selectedFolderObject.color
         };
-        onAddNote(newNote); // Pass the new note to the parent component
+
+        onAddNote(newNote);
         onClose();
     };
 
@@ -35,7 +48,7 @@ function AddingForm({ onClose, onAddNote }) {
         <div className='adding-form-overlay'>
             <div className='adding-form'>
                 <textarea value={inputValue} onChange={handleInputChange} placeholder='Type here..'></textarea>
-                <DropdownMenu options={(JSON.parse(localStorage.getItem('folders')) || []).map(folder => folder.name)} onSelect={handleSelect} />
+                <DropdownMenu options={folders.map(folder => folder.name)} onSelect={handleSelect} />
                 <div className='buttons-adding-form'>
                     <Button buttonText='Cancel' onClick={handleCancelClick} />
                     <Button buttonText='Add' onClick={handleAddClick} />

@@ -3,10 +3,25 @@ html, body {
   width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
-  background-color: #303030;
+  background-color: #262626;
   color: white;
   font-family: "Nunito", sans-serif;
   font-weight: 400;
+  overflow-y: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: #363636;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6b6b6b;
 }
 
 .container{
@@ -16,7 +31,7 @@ html, body {
 
 .container-left{
   flex: 0 0 25%;
-  border-right: 1px solid black;
+  border-right: 1px solid #464646;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -25,23 +40,26 @@ html, body {
 
 .container-right {
   flex: 0 0 75%;
+  height: fit-content;
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: flex-start;
   padding-top: 20px ;
   overflow-y: auto;
+  row-gap: 20px;
 }
 
 .note{
   width: 40%;
-  background-color: #4f9fa2;
   padding: 20px 15px;
   border-radius: 10px;
   font-weight: 300;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: flex-start;
+  margin: 0 15px;
 }
 
 .note-top {
@@ -60,7 +78,6 @@ html, body {
 .note-folder{
   width: fit-content;
   background-color: #e1d8d1;
-  color: #4f9fa2;
   font-weight: 1000;
   padding: 5px 10px;
   border-radius: 5px;
@@ -76,10 +93,11 @@ html, body {
   padding-top: 3px;
 }
 
-.note-content{
+.note-content {
+  width: 100%;
   padding: 15px 0;
-  max-height: 100px;
-  overflow-y: hidden;
+  max-height: 100px; /* Adjust this value as needed */
+  overflow: hidden;
 }
 
 .button {
@@ -94,6 +112,7 @@ html, body {
   font-family: "Nunito", sans-serif;
   font-weight: 500;
   box-shadow: #465bc0;
+  cursor: pointer;
 }
 
 .searchBar{
@@ -124,7 +143,8 @@ input:focus {
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #464646;
+
   height: 10vh;
   position: sticky;
   padding-right: 15px;
@@ -147,14 +167,25 @@ input:focus {
 .folder{
   margin: 10px;
   padding: 15px 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
+
+.folder-color{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
 .dropdown{
   width: 87%;
 }
 
 .dropdown-menu {
   width: 20%;
-  border: 1px solid #595858;
+  border: 1px solid #4b4b4b;
   border-top: none;
   display: block; /* Ensure items are displayed as block elements */
   position: absolute; /* Position the dropdown absolutely */
@@ -162,17 +193,21 @@ input:focus {
   left: 0; /* Align the dropdown with the left edge of the toggle button */
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: #504f4f;
+  background-color: #363636;
+  max-height: 100px;
 }
 
 .dropdown-item {
-  padding: 5px;
+  padding: 5px 15px;
   font-size: 14px;
   color: white;
   cursor: pointer;
   display: block;
-  width: 20%;
-
+  width: 100%;
+  text-decoration: none;
+}
+.dropdown-item:hover{
+  background-color: #4b4b4b;
 }
 
 .dropdown-toggle {
@@ -186,6 +221,7 @@ input:focus {
   display: flex;
   justify-content: space-between;
   border: none;
+  font-weight: 300;
 }
 
 .adding-form-overlay {
@@ -194,7 +230,7 @@ input:focus {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 999; /* Ensure the overlay is above other content */
+  z-index: 998; /* Ensure the overlay is above other content */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -208,21 +244,27 @@ input:focus {
   justify-content: space-evenly;
   align-items: center;
   padding: 15px 0;
-  background-color: #504f4f;
+  background-color: #363636;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Drop shadow effect */
+  font-weight: 300;
+  font-family: "Nunito", sans-serif;
 }
 
 .buttons-adding-form {
   width: 90%;
   display: flex;
   justify-content: flex-end;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .buttons-adding-form :first-child{
   background-color: #e1d8d1 ;
-  color: #303030;
+  color: #262626;
+}
+
+.buttons-adding-form button {
+  padding: 8px 10px;
 }
 
 .adding-form textarea {
@@ -260,6 +302,51 @@ input:focus {
 .add-folder:hover{
   color: lightgray;
 }
+
+.color-picker{
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#colorpicker {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  width: 32px;
+  height: 32px;
+  border: none;
+  cursor: pointer;
+}
+
+#colorpicker::-webkit-color-swatch {
+  border-radius: 50%;
+  border: #262626;
+}
+
+.folder-name-input{
+  width: 80%;
+  padding: 5px;
+  border-radius: 3px;
+  background-color: #262626;
+  margin-bottom: 10px;
+}
+.folder-name-input input{
+  background-color: transparent;
+  width: 90%;
+  outline: none;
+  border: none;
+  color: #cccccc;
+}
+
+.folder-name-input input:focus{
+  outline: none;
+  border: none;
+}
+
+
 
 
 

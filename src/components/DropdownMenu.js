@@ -21,7 +21,7 @@ function DropdownMenu({ options, onSelect }) {
         return (
             <Dropdown className='dropdown' show={dropdownOpen} onToggle={handleToggleClick}>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    <span>{selectedOption || "Choose Folder"}</span>
+                    <span>{selectedOption || "Choose folder"}</span>
                     <span><FontAwesomeIcon icon={faAngleDown} /></span>
                 </Dropdown.Toggle>
 
@@ -39,7 +39,7 @@ function DropdownMenu({ options, onSelect }) {
         return (
             <Dropdown className='dropdown' show={dropdownOpen} onToggle={handleToggleClick}>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    <span>{selectedOption || "Choose Folder"}</span>
+                    <span>{selectedOption || "Choose folder"}</span>
                     <span><FontAwesomeIcon icon={faAngleDown}/></span>
                 </Dropdown.Toggle>
             </Dropdown>
