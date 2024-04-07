@@ -30,7 +30,7 @@ html, body {
 }
 
 .container-left{
-  flex: 0 0 25%;
+  flex: 0 0 20%;
   border-right: 1px solid #464646;
   display: flex;
   flex-direction: column;
@@ -39,10 +39,9 @@ html, body {
 }
 
 .container-right {
-  flex: 0 0 75%;
+  flex: 0 0 80%;
   height: fit-content;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
   padding-top: 20px ;
@@ -50,8 +49,17 @@ html, body {
   row-gap: 20px;
 }
 
+.note-column{
+  flex: 0 0 33%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
 .note{
-  width: 40%;
+  width: 90%;
   padding: 20px 15px;
   border-radius: 10px;
   font-weight: 300;
@@ -60,6 +68,7 @@ html, body {
   justify-content: space-evenly;
   align-items: flex-start;
   margin: 0 15px;
+  transition: opacity 300ms ease-in-out;
 }
 
 .note-top {
@@ -98,6 +107,7 @@ html, body {
   padding: 15px 0;
   max-height: 100px; /* Adjust this value as needed */
   overflow: hidden;
+  cursor: pointer;
 }
 
 .button {
@@ -168,8 +178,22 @@ input:focus {
   margin: 10px;
   padding: 15px 10px;
   display: flex;
+  justify-content: space-between;
+  }
+
+.folder-left{
+  display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+
+.folder:hover .folder-right{
+  display: flex; /* Display folder-right when folder is hovered */
+}
+
+.folder-right {
+  display: none;
+  justify-content: flex-end;
 }
 
 .folder-color{
@@ -267,11 +291,28 @@ input:focus {
   padding: 8px 10px;
 }
 
-.adding-form textarea {
-  width: 87%;
+.note-form-header{
   justify-self: flex-start;
+  width: 87%;
+  text-align: right;
+}
+
+.header-textarea{
+  width: 87%;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  resize: vertical; /* Allow vertical resizing */
+  outline: none; /* Remove default outline */
+  background: none;
+  color: white;
+  padding: 5px;
+}
+
+.main-textarea {
+  width: 87%;
   height: 130px;
-  margin-top: 15px;
+  margin-top: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
   resize: vertical; /* Allow vertical resizing */
@@ -287,7 +328,7 @@ input:focus {
 }
 
 .delete-icon:hover{
-  color: red;
+  color: #757474;
  }
 
 .add-folder{
@@ -304,7 +345,7 @@ input:focus {
 }
 
 .color-picker{
-  width: 80%;
+  width: 87%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -327,11 +368,11 @@ input:focus {
 }
 
 .folder-name-input{
-  width: 80%;
+  width: 87%;
   padding: 5px;
   border-radius: 3px;
   background-color: #262626;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 .folder-name-input input{
   background-color: transparent;
@@ -345,6 +386,94 @@ input:focus {
   outline: none;
   border: none;
 }
+
+.note-opened{
+  display: flex;
+  width: 100%;
+  height: 87vh;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.note-opened-top{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note-opened-top div:first-child{
+  display: flex;
+  font-size: 24px;
+  font-family: "Reddit Mono", monospace;
+  align-items: center;
+  margin-left: 30px;
+}
+
+.note-opened-top div:last-child {
+  margin: 10px 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.note-opened-content{
+  width: 85%;
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-top: 30px;
+}
+
+.note-opened-bottom{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  justify-self: flex-end;
+}
+
+.note-opened-bottom div:first-child{
+  display: flex;
+  margin: 15px;
+  font-size: 18px;
+  align-items: center;
+}
+
+.note-opened-bottom div:last-child{
+  margin: 15px;
+}
+
+.note-opened-folder{
+  width: fit-content;
+  min-width: 90px;
+  text-align: center;
+  font-weight: 800;
+  padding: 8px;
+  color: white;
+  border-radius: 5px;
+}
+
+/* Dodajemy animację do komponentu Note */
+.folder-enter {
+  opacity: 0;
+}
+
+.folder-enter-active {
+  opacity: 1;
+  transition: opacity 500ms;
+}
+
+.folder-exit {
+  opacity: 1;
+}
+
+.folder-exit-active {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+
+
 
 
 

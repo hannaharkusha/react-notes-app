@@ -8,6 +8,9 @@ import AddingForm from './components/AddingForm';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFolderPlus} from "@fortawesome/free-solid-svg-icons";
 import AddFolderForm from "./components/AddFolderForm";
+import NoteOpened from "./components/NoteOpened";
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -17,6 +20,7 @@ class App extends React.Component {
       showFolderForm: false,
       notes: JSON.parse(localStorage.getItem('notes')) || [], // Pobranie notatek z localStorage
       folders: JSON.parse(localStorage.getItem('folders')) || [], // Initial list of folders
+      openedNote: null
     };
   }
 
@@ -43,7 +47,6 @@ class App extends React.Component {
     this.setState(prevState => ({
       notes: [...prevState.notes, newNote]
     }), () => {
-      // Zapisanie notatek do localStorage po dodaniu nowej notatki
       localStorage.setItem('notes', JSON.stringify(this.state.notes));
     });
   }
@@ -53,9 +56,20 @@ class App extends React.Component {
     this.setState(prevState => ({
       notes: prevState.notes.filter((note, i) => i !== index)
     }), () => {
-      // Zapisanie notatek do localStorage po usunięciu notatki
-      localStorage.setItem('notes', JSON.stringify(this.state.notes));
+     localStorage.setItem('notes', JSON.stringify(this.state.notes));
     });
+  }
+
+  handleDeleteFolder = (index) => {
+    this.setState(prevState => ({
+      folders: prevState.folders.filter((folder, i) => i !== index)
+    }), () => {
+      localStorage.setItem('folders', JSON.stringify(this.state.folders));
+    });
+  }
+
+  handleEditFolder = (index) => {
+    console.log('folder do edycji');
   }
 
   handleAddFolderClick = () => {
@@ -66,12 +80,20 @@ class App extends React.Component {
     this.setState(prevState => ({
       folders: [...prevState.folders, newFolder]
     }), () => {
-      // Zapisanie folderów do localStorage po dodaniu nowego folderu
       localStorage.setItem('folders', JSON.stringify(this.state.folders));
     });
   }
   handleCloseAddFolderForm = () => {
     this.setState({ showFolderForm: false });
+  }
+
+  handleOpenNote = (index) => {
+    const note = this.state.notes[index];
+    this.setState({ openedNote: note });
+  }
+
+  handleNoteClose = () => {
+    this.setState({ openedNote: null });
   }
 
   render() {
@@ -87,21 +109,84 @@ class App extends React.Component {
           <div className='container'>
             <div className='container-left'>
               <div>
+                <TransitionGroup>
                 {this.state.folders.map((folder, index) => (
-                    <Folder key={index} name={folder.name} color={folder.color}/>
+                    <CSSTransition key={index} timeout={500} classNames="folder">
+                      <Folder key={index} name={folder.name} color={folder.color}
+                              onEdit={() => this.handleEditFolder(index)}
+                              onDelete={() => this.handleDeleteFolder(index)}/>
+                    </CSSTransition>
                 ))}
+                </TransitionGroup>
               </div>
               <div className='add-folder' onClick={this.handleAddFolderClick}><FontAwesomeIcon icon={faFolderPlus}/>
               </div>
             </div>
             <div className='container-right'>
-              {this.state.notes.map((note, index) => (
-                  <Note key={index} fold={note.folder} content={note.content} date={note.date} time={note.time} color={note.color} header="Note" onDelete={() => this.handleDeleteNote(index)} />
-              ))}
+              {/* Render the grid of Note components */}
+              {!this.state.openedNote && (
+                  <>
+                    <div className='note-column'>
+                      {this.state.notes.map((note, index) => {
+                        if (index % 3 === 0) {
+                          return (
+                              <Note key={index} folder={note.folder} content={note.content} date={note.date}
+                                    time={note.time}
+                                    color={note.color} header={note.header} onClick={() => this.handleOpenNote(index)}
+                                    onDelete={() => this.handleDeleteNote(index)}/>
+                          );
+                        }
+                        return null;
+                      })}
+                    </div>
+                    <div className='note-column'>
+                      {this.state.notes.map((note, index) => {
+                        if (index % 3 === 1) {
+                          return (
+                              <Note key={index} folder={note.folder} content={note.content} date={note.date}
+                                    time={note.time}
+                                    color={note.color} header={note.header}
+                                    onDelete={() => this.handleDeleteNote(index)}
+                                    onClick={() => this.handleOpenNote(index)}/>
+                          );
+                        }
+                        return null;
+                      })}
+                    </div>
+                    <div className='note-column'>
+                      {this.state.notes.map((note, index) => {
+                        if (index % 3 === 2) {
+                          return (
+                              <Note key={index} folder={note.folder} content={note.content} date={note.date}
+                                    time={note.time}
+                                    color={note.color} header={note.header} onClick={() => this.handleOpenNote(index)}
+                                    onDelete={() => this.handleDeleteNote(index)}/>
+                          );
+                        }
+                        return null;
+                      })}
+                    </div>
+                  </>
+              )}
+
+              {/* Render the NoteOpened component if openedNote is not null */}
+              {this.state.openedNote && (
+                  <NoteOpened
+                      content={this.state.openedNote.content}
+                      header={this.state.openedNote.header}
+                      date={this.state.openedNote.date}
+                      time={this.state.openedNote.time}
+                      folder={this.state.openedNote.folder}
+                      color={this.state.openedNote.color}
+                      onClose={this.handleNoteClose}
+                  />
+              )}
             </div>
           </div>
-          {this.state.showAddingForm && <AddingForm onClose={this.handleCloseAddingForm} onAddNote={this.handleAddNote} />}
-          {this.state.showFolderForm && <AddFolderForm onClose={this.handleCloseAddFolderForm} onAddFolder={this.handleAddFolder} />}
+          {this.state.showAddingForm &&
+              <AddingForm onClose={this.handleCloseAddingForm} onAddNote={this.handleAddNote}/>}
+          {this.state.showFolderForm &&
+              <AddFolderForm onClose={this.handleCloseAddFolderForm} onAddFolder={this.handleAddFolder}/>}
         </div>
     );
   }

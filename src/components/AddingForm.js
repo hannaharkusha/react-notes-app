@@ -4,6 +4,7 @@ import DropdownMenu from './DropdownMenu';
 
 function AddingForm({ onClose, onAddNote }) {
     const [inputValue, setInputValue] = useState('');
+    const [headerValue, setHeaderValue] = useState('');
     const [selectedFolder, setSelectedFolder] = useState(null);
     const [folders, setFolders] = useState([]);
 
@@ -15,6 +16,10 @@ function AddingForm({ onClose, onAddNote }) {
 
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
+    };
+
+    const handleHeaderChange = (event) => {
+        setHeaderValue(event.target.value);
     };
 
     const handleSelect = (option) => {
@@ -29,6 +34,7 @@ function AddingForm({ onClose, onAddNote }) {
         if (!selectedFolderObject) return;
 
         const newNote = {
+            header: headerValue !== undefined ? headerValue : '',
             content: inputValue,
             folder: selectedFolder,
             time: new Date().toLocaleTimeString(),
@@ -47,11 +53,13 @@ function AddingForm({ onClose, onAddNote }) {
     return (
         <div className='adding-form-overlay'>
             <div className='adding-form'>
-                <textarea value={inputValue} onChange={handleInputChange} placeholder='Type here..'></textarea>
-                <DropdownMenu options={folders.map(folder => folder.name)} onSelect={handleSelect} />
+                <div className='note-form-header'>Adding new note</div>
+                <textarea className="header-textarea" value={headerValue} onChange={handleHeaderChange} placeholder='Header'></textarea>
+                <textarea className="main-textarea" value={inputValue} onChange={handleInputChange} placeholder='Note text..'></textarea>
+                <DropdownMenu options={folders.map(folder => folder.name)} onSelect={handleSelect}/>
                 <div className='buttons-adding-form'>
-                    <Button buttonText='Cancel' onClick={handleCancelClick} />
-                    <Button buttonText='Add' onClick={handleAddClick} />
+                    <Button buttonText='Cancel' onClick={handleCancelClick}/>
+                    <Button buttonText='Add' onClick={handleAddClick}/>
                 </div>
             </div>
         </div>

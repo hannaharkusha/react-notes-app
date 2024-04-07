@@ -29,7 +29,9 @@ function AddFolderForm({ onClose, onAddFolder }) {
     return (
         <div className='adding-form-overlay'>
             <div className='adding-form'>
-                <div className='folder-name-input'><input value={inputValue} onChange={handleInputChange} placeholder='Folder name'/></div>
+                <div className='note-form-header'>Adding new folder</div>
+                <div className='folder-name-input'><input value={inputValue} onChange={handleInputChange}
+                                                          placeholder='Folder name'/></div>
                 <div className='color-picker'>
                     <label htmlFor="colorpicker">Color</label>
                     <input type='color' id="colorpicker" value={colorValue} onChange={handleColorChange}/>
