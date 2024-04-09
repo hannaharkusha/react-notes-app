@@ -27,19 +27,19 @@ function AddingForm({ onClose, onAddNote }) {
     };
 
     const handleAddClick = () => {
-        if (!inputValue || !selectedFolder) return;
+        if (!inputValue) return;
 
         const selectedFolderObject = folders.find(folder => folder.name === selectedFolder);
 
-        if (!selectedFolderObject) return;
+        const folderToUse = selectedFolder || 'All'; // Use selected folder if available, otherwise use 'All'
 
         const newNote = {
             header: headerValue !== undefined ? headerValue : '',
             content: inputValue,
-            folder: selectedFolder,
+            folder: folderToUse,
             time: new Date().toLocaleTimeString(),
             date: new Date().toLocaleDateString(),
-            color: selectedFolderObject.color
+            color: selectedFolderObject ? selectedFolderObject.color : '#4f67e0'
         };
 
         onAddNote(newNote);
