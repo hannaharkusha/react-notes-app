@@ -38,6 +38,11 @@ html, body {
   overflow-y: auto;
 }
 
+.all-notes{
+  font-size: 18px;
+  cursor: pointer;
+}
+
 .container-right {
   flex: 0 0 80%;
   height: fit-content;
@@ -116,12 +121,12 @@ html, body {
   border: none;
   border-radius: 5px;
   height: 35px;
-  background-color: #465bc0;
+  background-color: #435bd3;
   color: white;
   font-size: 16px;
   font-family: "Nunito", sans-serif;
   font-weight: 500;
-  box-shadow: #465bc0;
+  box-shadow: #435bd3;
   cursor: pointer;
 }
 
@@ -179,12 +184,23 @@ input:focus {
   padding: 15px 10px;
   display: flex;
   justify-content: space-between;
+  border-radius: 3px;
   }
+
+.folder:hover{
+  background-color: #414040; /* Lighter background color */
+}
+
+.selected {
+  background-color: #414040; /* Lighter background color */
+}
 
 .folder-left{
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  cursor: pointer;
+  flex-grow: 1;
 }
 
 .folder:hover .folder-right{
@@ -208,7 +224,7 @@ input:focus {
 }
 
 .dropdown-menu {
-  width: 20%;
+  width: 87%;
   border: 1px solid #4b4b4b;
   border-top: none;
   display: block; /* Ensure items are displayed as block elements */
@@ -273,6 +289,18 @@ input:focus {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Drop shadow effect */
   font-weight: 300;
   font-family: "Nunito", sans-serif;
+}
+
+.position-folder-form{
+  position: absolute;
+  bottom: 10%;
+  left: 1%;
+}
+
+.position-note-form {
+  right: 1%;
+  top: 12%;
+  position: absolute;
 }
 
 .buttons-adding-form {
@@ -422,6 +450,7 @@ input:focus {
   flex-grow: 1;
   overflow-y: auto;
   margin-top: 30px;
+  padding: 5px;
 }
 
 .note-opened-bottom{

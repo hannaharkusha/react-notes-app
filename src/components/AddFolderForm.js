@@ -28,7 +28,7 @@ function AddFolderForm({ onClose, onAddFolder }) {
 
     return (
         <div className='adding-form-overlay'>
-            <div className='adding-form'>
+            <div className='adding-form position-folder-form'>
                 <div className='note-form-header'>Adding new folder</div>
                 <div className='folder-name-input'><input value={inputValue} onChange={handleInputChange}
                                                           placeholder='Folder name'/></div>

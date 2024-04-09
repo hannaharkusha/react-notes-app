@@ -52,7 +52,7 @@ function AddingForm({ onClose, onAddNote }) {
 
     return (
         <div className='adding-form-overlay'>
-            <div className='adding-form'>
+            <div className='adding-form position-note-form'>
                 <div className='note-form-header'>Adding new note</div>
                 <textarea className="header-textarea" value={headerValue} onChange={handleHeaderChange} placeholder='Header'></textarea>
                 <textarea className="main-textarea" value={inputValue} onChange={handleInputChange} placeholder='Note text..'></textarea>
