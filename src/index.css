@@ -55,7 +55,7 @@ html, body {
 }
 
 .note-column{
-  max-width: 33%; /* Ensure the columns don't grow beyond this width */
+  width: 33%; /* Ensure the columns don't grow beyond this width */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
