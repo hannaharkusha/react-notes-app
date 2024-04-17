@@ -515,6 +515,25 @@ input:focus {
     gap: 10px;
     margin-left: 0;
   }
+  .position-folder-form{
+    position: absolute;
+    left: auto;
+    bottom: auto;
+  }
+
+  .position-note-form {
+    position: absolute;
+    right: auto;
+    top: auto;
+  }
+
+  .adding-form{
+    min-width: 50%
+  }
+
+  .adding-form-overlay{
+    background-color: rgba(38, 38, 38, 0.4);
+  }
 
 }
 
@@ -548,8 +567,28 @@ input:focus {
     bottom: 0;
   }
 
+  .adding-form-overlay{
+    background-color: rgba(38, 38, 38, 0.4);
+  }
+
   .button{
     min-width: 90px;
+  }
+
+  .position-folder-form{
+    position: absolute;
+    left: auto;
+    bottom: auto;
+  }
+
+  .position-note-form {
+    position: absolute;
+    right: auto;
+    top: auto;
+  }
+
+  .adding-form{
+    min-width: 80%
   }
 
 }
