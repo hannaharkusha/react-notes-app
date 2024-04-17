@@ -45,22 +45,23 @@ html, body {
 
 .container-right {
   flex: 0 0 80%;
-  height: fit-content;
+  height: 87vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding-top: 20px ;
-  overflow-y: auto;
+  overflow-y: scroll;
   row-gap: 20px;
 }
 
 .note-column{
-  flex: 0 0 33%;
+  max-width: 33%; /* Ensure the columns don't grow beyond this width */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
+  margin-left: 10px;
 }
 
 .note{
@@ -72,7 +73,6 @@ html, body {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
-  margin: 0 15px;
   transition: opacity 300ms ease-in-out;
 }
 
@@ -328,7 +328,7 @@ input:focus {
 .header-textarea{
   width: 87%;
   margin-top: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid white;
   border-radius: 3px;
   resize: vertical; /* Allow vertical resizing */
   outline: none; /* Remove default outline */
@@ -341,7 +341,7 @@ input:focus {
   width: 87%;
   height: 130px;
   margin-top: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid white;
   border-radius: 3px;
   resize: vertical; /* Allow vertical resizing */
   outline: none; /* Remove default outline */
@@ -407,7 +407,7 @@ input:focus {
   width: 90%;
   outline: none;
   border: none;
-  color: #cccccc;
+  color: white;
 }
 
 .folder-name-input input:focus{
@@ -499,6 +499,59 @@ input:focus {
 .folder-exit-active {
   opacity: 0;
   transition: opacity 500ms;
+}
+
+
+@media screen and (min-width: 600px) and (max-width: 900px) {
+  .container-right{
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .note-column{
+    max-width: 90%;
+    gap: 10px;
+    margin-left: 0;
+  }
+
+}
+
+
+@media screen and (max-width: 600px) {
+  .container{
+    flex-direction: column;
+  }
+  .container-right{
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .note-column{
+    max-width: 90%;
+    gap: 10px;
+    margin-left: 0;
+  }
+
+  .note-column:last-child .note:last-child{
+    margin-bottom: calc(10% + 30px);
+  }
+
+  .add-folder{
+    background-color: #262626;
+    width: 90%;
+    text-align: right;
+    padding: 10px;
+    bottom: 0;
+  }
+
+  .button{
+    min-width: 90px;
+  }
+
 }
 
 
