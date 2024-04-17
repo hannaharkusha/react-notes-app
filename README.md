@@ -1,4 +1,4 @@
-# try there  https://master--nimble-melba-b441de.netlify.app/
+# try there
 ![image](https://github.com/hannaharkusha/react-notes-app/assets/93228122/e062ee9a-a31f-4ad9-8980-404a4c93ae8e)
 ![image](https://github.com/hannaharkusha/react-notes-app/assets/93228122/bf47a870-fd10-4877-b071-c40577b57d9e)
 ![image](https://github.com/hannaharkusha/react-notes-app/assets/93228122/e4945de8-2812-4800-8b27-c348dacb13c3)
