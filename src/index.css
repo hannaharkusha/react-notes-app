@@ -511,7 +511,7 @@ input:focus {
   }
 
   .note-column{
-    max-width: 90%;
+    min-width: 90%;
     gap: 10px;
     margin-left: 0;
   }
@@ -550,7 +550,7 @@ input:focus {
   }
 
   .note-column{
-    max-width: 90%;
+    min-width: 90%;
     gap: 10px;
     margin-left: 0;
   }
