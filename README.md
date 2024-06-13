@@ -38,5 +38,3 @@ The following updates and enhancements are planned for future releases:
 ![image](https://github.com/hannaharkusha/react-notes-app/assets/93228122/6872bf06-09d0-46ce-9bbe-113d1d9d5866)
 
 ## Narrow screens
-![Zrzut ekranu 2024-04-17 120809.png](..%2F..%2F..%2FPictures%2FScreenshots%2FZrzut%20ekranu%202024-04-17%20120809.png)
-![Zrzut ekranu 2024-04-17 120753.png](..%2F..%2F..%2FPictures%2FScreenshots%2FZrzut%20ekranu%202024-04-17%20120753.png)
